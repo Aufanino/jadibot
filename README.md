@@ -22,10 +22,10 @@
 > bash install.sh
 > npm start/node main.js
 ```
-#gw cuma fixing berapa bug ae:v
+## gw cuma fixing berapa bug ae:v
 
-##Pimtur ?? cek aja Udah gw perbarui
-
+## Pimtur ?? cek aja Udah gw perbarui
+```bash
 Stick cmd ✅
 button cmd ✅
 
@@ -35,7 +35,7 @@ setelah itu lihat di termux jika ada tulisan
 seperti ini
 "LE6XD8kOiGY/zVKbf9Zg0TuSUBeOep2O+03/mSNjIaM="
 copy aja
-
+```
   # MAKASIH LORT
 * [`Baileys`](https://github.com/adiwajshing/Baileys)
 * [`MhankBarBar`](https://github.com/MhankBarBar)
