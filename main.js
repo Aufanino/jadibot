@@ -19,6 +19,8 @@ app.listen(PORT, () => {
 	})
 })
 
+let client = new global.constructor()
+
 app.get('/', (req, res) => {
 	res.json({'halo':'halo'})
 })
