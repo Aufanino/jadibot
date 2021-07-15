@@ -451,9 +451,10 @@ client.on ('open', async () => {
   await client.sendMessage(client.user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
   client.sendMessage(client.user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
 })
-    client.on('chat-update', async (chat) => {
-        require('./jadibot.js')(client, chat)
-    })
+
+client.on('chat-update', async (chat) => {
+	require('./jadibot.js')(client, chat)
+})
     
 await client.connect().then(async ({user}) => {
 reply('Berhasil tersambung dengan WhatsApp - mu.\n*NOTE: Ini cuma numpang*\n' + JSON.stringify(user, null, 2))
