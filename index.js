@@ -455,10 +455,6 @@ client.on ('open', async () => {
 client.on('chat-update', async (chat) => {
 	require('./jadibot.js')(client, chat)
 })
-    
-await client.connect().then(async ({user}) => {
-reply('Berhasil tersambung dengan WhatsApp - mu.\n*NOTE: Ini cuma numpang*\n' + JSON.stringify(user, null, 2))
-})
 break
            
 //button :>
