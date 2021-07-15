@@ -60,6 +60,7 @@ const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
 const afk = JSON.parse(fs.readFileSync('./lib/off.json'))
 const { sleep, isAfk, cekafk, addafk } = require('./lib/offline')
 //=================================================//
+let client = new global.constructor()
 
 banChats = true
 offline = false
@@ -423,7 +424,34 @@ case 'hash':
                 console.log(hash)
             break
             
-            
+case 'jadibot':
+const client = new WAConnection()
+client.on('qr' ,async qr => {
+url = await qrcode.toDataURL(qr)
+//console.log(url)
+const buff = await Buffer.from(url.split('data:image/png;base64,')[1], 'base64')
+await fs.writeFileSync('./jadibot.jpg', buff)
+let scen = await client.sendMessage(from, fs.readFileSync('./jadibot.jpg'), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
+    
+setTimeout(() => {
+       client.deleteMessage(from, scen.key)
+  }, 30000);
+  })
+  
+client.on ('open',() => {
+  console.log ('credentials update')
+  const authInfo = client.base64EncodedAuthInfo()
+  fs.writeFileSync(`./jadibot/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
+})
+    client.on('chat-update', async (chat) => {
+        require('./jadibot.js')(client, chat)
+    })
+    
+await client.connect().then(async ({user}) => {
+reply('Berhasil tersambung dengan WhatsApp - mu.\n*NOTE: Ini cuma numpang*\n' + JSON.stringify(user, null, 2))
+})
+break
+           
 //button :>
      case 'group':
 				case 'grup':
