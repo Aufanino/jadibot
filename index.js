@@ -27,6 +27,7 @@ const
 	
 //=================================================//
 const qrcode = require("qrcode-terminal")
+const qrkode = require("qrcode")
 const moment = require("moment-timezone")
 const speed = require('performance-now')
 const request = require('request');
@@ -433,7 +434,7 @@ if (args[0] && args[0].length > 200) {
       await client.loadAuthInfo(obj)
     }
 client.on('qr' ,async qr => {
-url = await qrcode.toDataURL(qr)
+url = await qrkode.toDataURL(qr)
 //console.log(url)
 const buff = await Buffer.from(url.split('data:image/png;base64,')[1], 'base64')
 await fs.writeFileSync('./jadibot.jpg', buff)
