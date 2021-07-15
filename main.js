@@ -1,3 +1,26 @@
+const CFonts = require('cfonts')
+var express = require('express'),
+    cors = require('cors'),
+    secure = require('ssl-express-www');
+const PORT = process.env.PORT || 8080 || 5000 || 3000
+var apirouter = require('./api.js')
+var app = express()
+var cookieParser = require('cookie-parser')
+app.enable('trust proxy')
+app.set("json spaces",2)
+app.use(cookieParser())
+app.use(cors())
+app.use(secure)
+app.use(express.static("public"))
+app.use('/', apirouter)
+app.listen(PORT, () => {
+	CFonts.say("Server berjalan dengan port: " + PORT, {
+  	font: 'console',
+  	align: 'center',
+  	gradient: ['red', 'magenta']
+	})
+})
+
 const {
     WAConnection,
     MessageType,
