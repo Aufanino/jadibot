@@ -438,10 +438,10 @@ url = await qrkode.toDataURL(qr)
 //console.log(url)
 const buff = await Buffer.from(url.split('data:image/png;base64,')[1], 'base64')
 await fs.writeFileSync('./jadibot.jpg', buff)
-let scen = await client.sendMessage(from, fs.readFileSync('./jadibot.jpg'), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
+let scen = await conn.sendMessage(from, fs.readFileSync('./jadibot.jpg'), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
     
 setTimeout(() => {
-       client.deleteMessage(from, scen.key)
+       conn.deleteMessage(from, scen.key)
   }, 30000);
   })
   
