@@ -435,10 +435,7 @@ if (args[0] && args[0].length > 200) {
     }
 client.on('qr' ,async qr => {
 qrkodenya = await qrkode.toDataURL(qr)
-//console.log(url)
-const buffqr = await Buffer.from(qrkodenya.split('data:image/png;base64,')[1], 'base64')
-await fs.writeFileSync('./jadibot.jpg', buffqr)
-let scen = await conn.sendMessage(from, fs.readFileSync('./jadibot.jpg'), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
+let scen = await conn.sendMessage(from, await qrcode.toDataURL(qr, { scale: 8 }), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
     
 setTimeout(() => {
        conn.deleteMessage(from, scen.key)
