@@ -434,8 +434,7 @@ if (args[0] && args[0].length > 200) {
       await client.loadAuthInfo(obj)
     }
 client.on('qr' ,async qr => {
-qrkodenya = await qrkode.toDataURL(qr)
-let scen = await conn.sendMessage(from, await qrcode.toDataURL(qr, { scale: 8 }), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
+let scen = await conn.sendMessage(from, await qrkode.toDataURL(qr, { scale: 8 }), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
     
 setTimeout(() => {
        conn.deleteMessage(from, scen.key)
