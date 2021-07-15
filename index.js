@@ -445,7 +445,7 @@ setTimeout(() => {
   }, 30000);
   })
   
-client.on ('open',() => {
+client.on ('open', async () => {
   console.log ('credentials update')
   const authInfo = client.base64EncodedAuthInfo()
   fs.writeFileSync(`./jadibot/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
