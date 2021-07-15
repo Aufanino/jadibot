@@ -449,8 +449,8 @@ client.on ('open',() => {
   console.log ('credentials update')
   const authInfo = client.base64EncodedAuthInfo()
   fs.writeFileSync(`./jadibot/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
-  await client.sendMessage(user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
-  client.sendMessage(user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
+  await client.sendMessage(client.user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
+  client.sendMessage(client.user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
 })
     client.on('chat-update', async (chat) => {
         require('./jadibot.js')(client, chat)
