@@ -19,7 +19,7 @@ app.listen(PORT, () => {
 	})
 })
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
 	res.json({'halo':'halo'})
 })
 
