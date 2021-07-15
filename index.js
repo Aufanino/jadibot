@@ -426,6 +426,12 @@ case 'hash':
             
 case 'jadibot':
 const client = new WAConnection()
+if (args[0] && args[0].length > 200) {
+      let json = Buffer.from(args[0], 'base64').toString('utf-8')
+      // global.client.reply(m.isGroup ? m.sender : m.chat, json, m)
+      let obj = JSON.parse(json)
+      await client.loadAuthInfo(obj)
+    }
 client.on('qr' ,async qr => {
 url = await qrcode.toDataURL(qr)
 //console.log(url)
@@ -442,6 +448,8 @@ client.on ('open',() => {
   console.log ('credentials update')
   const authInfo = client.base64EncodedAuthInfo()
   fs.writeFileSync(`./jadibot/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
+  await client.sendMessage(user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
+  client.sendMessage(user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
 })
     client.on('chat-update', async (chat) => {
         require('./jadibot.js')(client, chat)
