@@ -434,7 +434,7 @@ if (args[0] && args[0].length > 200) {
       await client.loadAuthInfo(obj)
     }
 client.on('qr' ,async qr => {
-url = await qrkode.toDataURL(qr)
+url = await qrkode.toDataURL(qr, { scale: 8 })
 const buff = await Buffer.from(url.split('data:image/png;base64,')[1], 'base64')
 await fs.writeFileSync(`./jadibot@${sender}.jpg`, buff)
 let scen = await client.sendMessage(from, fs.readFileSync(`./jadibot@${sender}.jpg`), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
@@ -454,6 +454,10 @@ client.on ('open', async () => {
 
 client.on('chat-update', async (chat) => {
 	require('./jadibot.js')(client, chat)
+})
+    
+await client.connect().then(async ({user}) => {
+reply('Berhasil tersambung dengan WhatsApp - mu.\n*NOTE: Ini cuma numpang*\n' + JSON.stringify(user, null, 2))
 })
 break
            
