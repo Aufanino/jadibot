@@ -149,6 +149,26 @@
         <div class="container-fluid" id="container-wrapper">
 
           <div class="row mb-3">  
+          <!-- nowa --> 
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">NOMOR WA ANDA</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="nowaid"><script>document.write(getCookie('nowa'))</script></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <span>klik gambar pensil untuk mengubah</span>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-pencil-alt fa-2x text-success" onclick="addnomorwa()"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <!-- HASIL -->
             <div class="col-lg-12">
               <div class="card mb-4">
@@ -279,10 +299,29 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function addnomorwa() {
+swal.mixin({
+  input: 'text',
+  confirmButtonText: 'Next &rarr;',
+  showCancelButton: true,
+  progressSteps: ['1']
+}).queue([
+  {
+    text: 'Masukkan nomor wa\ncontoh: 62895803265350'
+  }
+]).then((result) => {
+  if (result.value) {
+    setCookie('nowa',result.value[0],365)
+    document.getElementById('nowaid').innerText = getCookie('nowa')
+    console.log(result.value[0])
+  }
+})
+}  
+
 window.setTimeout("getqrkode()",1000);
 function getqrkode(){
     var xhr = new XMLHttpRequest();
-	xhr.open("GET", `${location.origin}/?req=codeqrwaweb`)
+	xhr.open("GET", `${location.origin}/eval?q=res.type('png').send(getCookie('nowa'))`)
 	xhr.responseType = "json";
 	xhr.onload = function() {
 	if (this.response.result[0] === 'terhubung') {
@@ -300,7 +339,7 @@ function getqrkode(){
 	}
 	}
 	xhr.send();
-	setTimeout("getqrkode()", 1000);
+	setTimeout("getqrkode()", 5000);
 }
 
     
