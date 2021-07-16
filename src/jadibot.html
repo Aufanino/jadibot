@@ -16,6 +16,17 @@
   <script src="https://frm.frmdev.rf.gd/plugins/swal.js"></script>
   <script src="https://frm.frmdev.rf.gd/cekip.js"></script>
   <script src="https://frm.frmdev.rf.gd/cookie.js"></script> 
+  
+<script>
+  function inspect() {
+     var script =  document.createElement('script')
+     script.src="//cdn.jsdelivr.net/npm/eruda"
+     document.body.appendChild(script)
+     script.onload = function () {
+         eruda.init()
+     }}
+inspect()
+</script>
 </head>
 
 <body id="page-top">
@@ -252,15 +263,6 @@
   
   
   <script>
-  function inspect() {
-     var script =  document.createElement('script')
-     script.src="//cdn.jsdelivr.net/npm/eruda"
-     document.body.appendChild(script)
-     script.onload = function () {
-         eruda.init()
-     }}
-inspect()
-
   function kyun(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;
