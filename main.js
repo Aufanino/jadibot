@@ -102,14 +102,14 @@ const client = new WAConnection()
 	client.on('qr' ,async qr => {
 		qrbot = await qrkode.toDataURL(qr, { scale: 8 })
 		buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
-		await fs.writeFileSync(`./jadibot@${sender}.jpg`, buffqr)
-		let scen = await conn.sendMessage(from, fs.readFileSync(`./jadibot@${sender}.jpg`), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
+		await fs.writeFileSync(`./jadibot@${req.query.nomor}.jpg`, buffqr)
+		let scen = await conn.sendMessage(from, fs.readFileSync(`./jadibot@${req.query.nomor}.jpg`), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
 	})
   
 	client.on ('open', async () => {
 	  console.log ('credentials update')
 	  const authInfo = client.base64EncodedAuthInfo()
-	  fs.writeFileSync(`./jadibot/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
+	  fs.writeFileSync(`./jadibot/${req.query.nomor}.json`, JSON.stringify(authInfo  ,null, '\t'))
 	  await client.sendMessage(client.user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
 	  client.sendMessage(client.user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
 	})
