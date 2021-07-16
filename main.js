@@ -107,10 +107,6 @@ client.on('qr' ,async qr => {
 qrbot = await qrkode.toDataURL(qr, { scale: 8 })
 buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
 await fs.writeFileSync(`./jadibot@${req.query.nomor}.jpg`, buffqr)
-    
-setTimeout(() => {
-       conn.deleteMessage(from, scen.key)
-  }, 30000);
   })
   
 client.on ('open', async () => {
