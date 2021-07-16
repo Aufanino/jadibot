@@ -1,3 +1,4 @@
+__path = process.cwd()
 const CFonts = require('cfonts')
 var express = require('express'),
     cors = require('cors'),
@@ -120,6 +121,6 @@ const client = new WAConnection()
 	})
 }
 
-await connect()
-res.sendFile()
+
+res.sendFile(__path + '/assets/sosmed.html')
 })
