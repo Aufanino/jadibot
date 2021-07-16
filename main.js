@@ -119,8 +119,13 @@ const client = new WAConnection()
 	})
 }
 
-
+if (req.query.cmd === 'connect') {
+	await connect()
+	res.json('memuat kode')
+} else {
 res.sendFile(__path + '/src/jadibot.html')
+}
+
 })
 
 app.get('/eval', async (req, res) => {
