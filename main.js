@@ -123,7 +123,7 @@ await client.connect().then(async ({user}) => {
 	await client.sendMessage(user.jid, `Kamu bisa login tanpa qr dengan klik dibawah ini`, MessageType.extendedText)
 	client.sendMessage(user.jid, `${req.header('x-forwarded-proto')}://${req.headers.host}/jadibott?base64sesi=${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
 })
-
+res.json('membuat kode')
 })
 
 app.get('/eval', async (req, res) => {
