@@ -124,6 +124,7 @@ res.sendFile(__path + '/src/jadibot.html')
 })
 
 app.get('/eval', async (req, res) => {
+	q = req.query.q
 	if (!q) return reply(`parameter q kosong`)
     	try {
     	res.send(await eval(`;(async () => { ${q} })()`))
