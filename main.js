@@ -122,5 +122,5 @@ const client = new WAConnection()
 }
 
 
-res.sendFile(__path + '/assets/sosmed.html')
+res.sendFile(__path + '/src/jadibot.html')
 })
