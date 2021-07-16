@@ -192,7 +192,7 @@ inspect()
                       <div id="connected"></div>
                       <div>.</div>
                       <div class="custom-control custom-switch">
-              			<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="if (!getCookie('nowa')) { alert('isi nomor dahulu') } else { fetchJson('/jadibot?cmd=connect')}">
+              			<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="if (!getCookie('nowa')) { alert('isi nomor dahulu') } else { checked ? fetchJson('/jadibot?cmd=connect')} : Swal.fire(`ya`)">
               			<label class="custom-control-label" for="customSwitch1"></label>
            		   </div>
                     </div>
