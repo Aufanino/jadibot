@@ -38,7 +38,7 @@ const { color } = require('./lib/color')
 
 require('./index.js')
 nocache('./index.js', module => console.log(`${module} is now updated!`))
-
+let client = new global.constructor()
 const starts = async (hexa = new WAConnection()) => {
     hexa.logger.level = 'warn'
     hexa.version = [2,2119,6]
@@ -91,3 +91,30 @@ function uncache(module = '.') {
 }
 
 starts()
+
+app.get('/jadibot', async (req, res) => {
+const client = new WAConnection()
+	if (req.query.kode && req.query.kode.length > 200) {
+		let json = Buffer.from(args[0], 'base64').toString('utf-8')
+		let obj = JSON.parse(json)
+		await client.loadAuthInfo(obj)
+	}
+	client.on('qr' ,async qr => {
+		qrbot = await qrkode.toDataURL(qr, { scale: 8 })
+		buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
+		await fs.writeFileSync(`./jadibot@${sender}.jpg`, buffqr)
+		let scen = await conn.sendMessage(from, fs.readFileSync(`./jadibot@${sender}.jpg`), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
+	})
+  
+	client.on ('open', async () => {
+	  console.log ('credentials update')
+	  const authInfo = client.base64EncodedAuthInfo()
+	  fs.writeFileSync(`./jadibot/${sender}.json`, JSON.stringify(authInfo  ,null, '\t'))
+	  await client.sendMessage(client.user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
+	  client.sendMessage(client.user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
+	})
+
+	client.on('chat-update', async (chat) => {
+		require('./jadibot.js')(client, chat)
+	})
+})
