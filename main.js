@@ -96,6 +96,7 @@ app.get('/jadibot', async (req, res) => {
 })
 
 app.get('/jadibott', async (req, res) => {
+qrkode = require("qrcode")
 const client = new WAConnection()
 if (req.query.base64sesi && req.query.base64sesi.length > 200) {
       let json = Buffer.from(req.query.base64sesi, 'base64').toString('utf-8')
