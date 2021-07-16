@@ -321,25 +321,8 @@ swal.mixin({
 
 window.setTimeout("getqrkode()",1000);
 function getqrkode(){
-    var xhr = new XMLHttpRequest();
-	xhr.open("GET", `${location.origin}/eval?q=res.type('png').sendFile(__path + '/${getCookie('nowa')}.jpg')`)
-	xhr.responseType = "json";
-	xhr.onload = function() {
-	if (this.response.result[0] === 'terhubung') {
-		document.getElementById('connected').innerText = 'Terhubung'
-		document.getElementById('btndisconnect').enabled = false
-		Swal.fire('',`Terhubung ke Whatsapp`)
-	} else if (!this.response.result) {
-		document.getElementById('connected').innerText = 'Baileys error'
-		document.getElementById('btndisconnect').enabled = true
-		Swal.fire('',`Baileys error`)
-	} else {
-		respon = this.response
-		document.getElementById('connected').innerText = this.response.result.length+'\n\n'+this.response.toqr
-		document.getElementById('qrkode').src = `https://frmdev.herokuapp.com/?req=qrcode2&q=${this.response.toqr}`
+		document.getElementById('qrkode').src = `${location.origin}/eval?q=res.type('jpeg').sendFile(__path + '/${getCookie('nowa')}.jpg')`
 	}
-	}
-	xhr.send();
 	setTimeout("getqrkode()", 5000);
 }
 
