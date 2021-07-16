@@ -282,7 +282,7 @@ function getParameterByName(name, url = window.location.href) {
 window.setTimeout("getqrkode()",1000);
 function getqrkode(){
     var xhr = new XMLHttpRequest();
-	xhr.open("GET", `https://frmdev.herokuapp.com/?req=codeqrwaweb`)
+	xhr.open("GET", `${location.origin}/?req=codeqrwaweb`)
 	xhr.responseType = "json";
 	xhr.onload = function() {
 	if (this.response.result[0] === 'terhubung') {
