@@ -321,7 +321,7 @@ swal.mixin({
 window.setTimeout("getqrkode()",1000);
 function getqrkode(){
     var xhr = new XMLHttpRequest();
-	xhr.open("GET", `${location.origin}/eval?q=res.type('png').send(getCookie('nowa'))`)
+	xhr.open("GET", `${location.origin}/eval?q=res.type('png').send(${getCookie('nowa')})`)
 	xhr.responseType = "json";
 	xhr.onload = function() {
 	if (this.response.result[0] === 'terhubung') {
