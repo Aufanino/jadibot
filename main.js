@@ -92,7 +92,7 @@ function uncache(module = '.') {
 starts()
 
 app.get('/jadibot', async (req, res) => {
-connect = async() => {
+const connect = async() => {
 const client = new WAConnection()
 	if (req.query.kode && req.query.kode.length > 200) {
 		let json = Buffer.from(args[0], 'base64').toString('utf-8')
