@@ -191,6 +191,10 @@ inspect()
                       <img id="qrkode" width="260px" height="260px"></img>
                       <div id="connected"></div>
                       <div>.</div>
+                      <div class="custom-control custom-switch">
+              			<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="if (!getCookie('nowa')) { alert('isi nomor dahulu') } else { fetchJson('/jadibot?cmd=connect')}">
+              			<label class="custom-control-label" for="customSwitch1"></label>
+           		   </div>
                     </div>
                   </div>
                 </div>
@@ -275,6 +279,18 @@ inspect()
   return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
 }
 
+function fetchJson(url, id){ 
+	if (url.startsWith('/')) {url = `${location.origin}${url}`}
+    var xhr = new XMLHttpRequest();
+	xhr.open("GET", url);
+	xhr.responseType = "json";
+	xhr.onload = function() {
+		if (!id) return Swal.fire(JSON.stringify(this.response))
+    	document.getElementById(id).innerText = JSON.stringify(this.response)
+	}
+	xhr.send();
+}
+
 function toast(teks, icon, timer) {
 if (!timer) {timer = 3000}
 Toast = Swal.mixin({
@@ -322,7 +338,6 @@ swal.mixin({
 })
 }  
 
-window.setTimeout("getqrkode()",1000);
 function getqrkode(){
 	document.getElementById('qrkode').src = `${location.origin}/eval?q=res.type('jpeg').sendFile(__path + '/${getCookie('nowa')}.jpg')`
 	setTimeout("getqrkode()", 5000);
