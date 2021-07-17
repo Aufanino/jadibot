@@ -429,21 +429,19 @@ case 'hash':
 case 'jadibot':
 const client = new WAConnection()
 if (args[0] && args[0].length > 200) {
-      let json = Buffer.from(args[0], 'base64').toString('utf-8')
-      let obj = JSON.parse(json)
-      await client.loadAuthInfo(obj)
-    }
+	let json = Buffer.from(args[0], 'base64').toString('utf-8')
+    let obj = JSON.parse(json)
+    await client.loadAuthInfo(obj)
+}
 client.on('qr' ,async qr => {
 qrbot = await qrkode.toDataURL(qr, { scale: 8 })
 buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
 await fs.writeFileSync(`./jadibot@${sender}.jpg`, buffqr)
-let scen = await conn.sendMessage(from, fs.readFileSync(`./jadibot@${sender}.jpg`), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})
-    
+let scen = await conn.sendMessage(from, fs.readFileSync(`./jadibot@${sender}.jpg`), MessageType.image, {quoted : mek,caption: 'Scan QR ini untuk jadi bot sementara!\n1. Klik titik tiga di pojok kanan atas\n2. Ketuk WhatsApp Web\n3. Scan QR ini \n\nQR Expired dalam 20 detik'})    
 setTimeout(() => {
        conn.deleteMessage(from, scen.key)
   }, 30000);
-  })
-  
+})  
 client.on ('open', async () => {
   console.log ('credentials update')
   const authInfo = client.base64EncodedAuthInfo()
@@ -451,7 +449,6 @@ client.on ('open', async () => {
   await client.sendMessage(client.user.jid, `Kamu bisa login tanpa qr dengan pesan dibawah ini`, MessageType.extendedText)
   client.sendMessage(client.user.jid, `${command} ${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.extendedText)
 })
-
 client.on('chat-update', async (chat) => {
 	if (!chat.hasNewMessage) return
     chat = chat.messages.all()[0]
@@ -459,14 +456,13 @@ client.on('chat-update', async (chat) => {
 	if (chat.key && chat.key.remoteJid == 'status@broadcast') return
 	if (!chat.key.id.startsWith('3EB0') && !chat.key.id.length === 12) return
 	require('./jadibot.js')(client, chat)
-})
-    
+})    
 await client.connect().then(async ({user}) => {
 reply('Berhasil tersambung dengan WhatsApp - mu.\n*NOTE: Ini cuma numpang*\n' + JSON.stringify(user, null, 2))
 })
 break
            
-//button :>
+
      case 'group':
 				case 'grup':
 					  let po = conn.prepareMessageFromContent(from, {
