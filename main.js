@@ -89,6 +89,8 @@ function uncache(module = '.') {
     })
 }
 
+listjadibot = []
+
 app.get('/jadibot', async (req, res) => {
 	res.sendFile(__path + '/src/jadibot.html')
 })
@@ -135,6 +137,7 @@ client.connect().then(async ({user}) => {
 	let perintah = await client.sendMessage(user.jid, `Kamu bisa login tanpa qr dengan klik dibawah ini`, MessageType.extendedText)
 	await client.sendMessage(user.jid, `${req.header('x-forwarded-proto')}://${req.headers.host}/jadibott?base64sesi=${Buffer.from(JSON.stringify(client.base64EncodedAuthInfo())).toString('base64')}`, MessageType.text, {quoted:perintah})
 	client.sendMessage(user.jid, JSON.stringify(client.base64EncodedAuthInfo(), null, 2), MessageType.text)
+	listjadibot.push(user.jid)
 })
 })
 
