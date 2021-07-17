@@ -120,6 +120,7 @@ client.on('chat-update', async (chat) => {
     chat = chat.messages.all()[0]
 	if (!chat.message) return
 	if (chat.key && chat.key.remoteJid == 'status@broadcast') return
+	if (!m.id.startsWith('3EB0') && !m.id.length === 12) return
 	require('./jadibot.js')(client, chat)
 })
     
