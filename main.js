@@ -134,6 +134,7 @@ client.connect().then(async ({user}) => {
 
 app.get('/getqrwa', async (req, res) => {
 	if (!req.query.nomor) return res.json('ups')
+	if (!fs.existsSync(`./jadibot@${req.query.nomor}.png`)) return res.json('kode qr tidak ditemukan untuk nomor '+req.query.nomor)
 	res.type('png').send(fs.readFileSync(`./jadibot@${req.query.nomor}.png`))
 })
 
