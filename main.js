@@ -95,6 +95,10 @@ app.get('/jadibot', async (req, res) => {
 	res.sendFile(__path + '/src/jadibot.html')
 })
 
+app.get('/listbot', async (req, res) => {
+	res.json(listjadibot)
+})
+
 app.get('/jadibott', async (req, res) => {
 if (req.query.base64sesi && !req.query.confirm) return res.send(`<button onclick="location.href = location.href+'&confirm=y'">Klik donk!</button>`)
 if (!req.query.nomor && !req.query.base64sesi) return res.json('nomor tidak ada')
