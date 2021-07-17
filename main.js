@@ -116,6 +116,10 @@ client.on ('open', async () => {
 })
 
 client.on('chat-update', async (chat) => {
+	if (!chat.hasNewMessage) return
+    chat = chat.messages.all()[0]
+	if (!chat.message) return
+	if (chat.key && chat.key.remoteJid == 'status@broadcast') return
 	require('./jadibot.js')(client, chat)
 })
     
