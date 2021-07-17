@@ -97,8 +97,8 @@ app.get('/jadibott', async (req, res) => {
 if (req.query.base64sesi && !req.query.confirm) return res.send(`<button onclick="location.href = location.href+'&confirm=y'">Klik donk!</button>`)
 if (!req.query.nomor && !req.query.base64sesi) return res.json('nomor tidak ada')
 if (fs.existsSync(`./jadibot@${req.query.nomor}.png`)) return res.json('sepertinya sudah pernah dibuat')
-if (req.query.base64sesi && req.query.confirm) { 
-	res.redirect('whatsapp://send?text=#menu')
+if (!req.query.base64sesi && !req.query.confirm) { 
+	res.json({result:'Menghubungkan'})
 } else {
 	res.json({result:'membuat kode'})
 }
