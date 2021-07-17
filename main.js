@@ -94,12 +94,13 @@ app.get('/jadibot', async (req, res) => {
 })
 
 app.get('/jadibott', async (req, res) => {
+if (req.query.base64sesi && !req.query.confirm) return res.send(`<button onclick="location.href = location.href+'&confirm=y'">Klik donk!</button>`)
 if (!req.query.nomor && !req.query.base64sesi) return res.json('nomor tidak ada')
 if (fs.existsSync(`./jadibot@${req.query.nomor}.png`)) return res.json('sepertinya sudah pernah dibuat')
 res.json({result:'membuat kode'})
 qrkode = require("qrcode")
 const client = new WAConnection()
-if (req.query.base64sesi && req.query.base64sesi.length > 200) {
+if (req.query.base64sesi && req.query.base64sesi.length > 200 && req.query.confirm) {
       let json = Buffer.from(req.query.base64sesi, 'base64').toString('utf-8')
       let obj = JSON.parse(json)
       await client.loadAuthInfo(obj)
