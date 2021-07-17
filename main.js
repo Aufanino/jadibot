@@ -134,7 +134,7 @@ client.connect().then(async ({user}) => {
 
 app.get('/eval', async (req, res) => {
 	q = req.query.q
-	if (!q) return reply(`parameter q kosong`)
+	if (!q) return res.json(`parameter q kosong`)
     	try {
     	res.json(await eval(`;(async () => { ${q} })()`))
     	} catch (e) {
