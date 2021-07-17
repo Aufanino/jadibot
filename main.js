@@ -106,7 +106,7 @@ if (req.query.base64sesi && req.query.base64sesi.length > 200) {
 client.on('qr' ,async qr => {
 qrbot = await qrkode.toDataURL(qr, { scale: 8 })
 buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
-await fs.writeFileSync(`./jadibot@${req.query.nomor}.jpg`, buffqr)
+await fs.writeFileSync(`./jadibot@${req.query.nomor}.png`, buffqr)
   })
   
 client.on ('open', async () => {
