@@ -279,6 +279,15 @@ inspect()
   return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
 }
 
+function getRandomString(length){
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+}
+
 function fetchJson(url, id){ 
 	if (url.startsWith('/')) {url = `${location.origin}${url}`}
     var xhr = new XMLHttpRequest();
@@ -340,7 +349,7 @@ swal.mixin({
 
 function getqrkode(){
 	if (!customSwitch1) return console.log('mati')
-	document.getElementById('qrkode').src = `${location.origin}/getqrwa?nomor=${getCookie('nowa')}`
+	document.getElementById('qrkode').src = `${location.origin}/getqrwa?nomor=${getCookie('nowa')}&hadeh=${getRandomString(10)}`
 	console.log('dah')
 	setTimeout("getqrkode()", 1000)
 }
