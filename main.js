@@ -132,6 +132,11 @@ client.connect().then(async ({user}) => {
 })
 })
 
+app.get('/getqrwa', async (req, res) => {
+	if (!req.query.nomor) return res.json('ups')
+	res.type('png').send(fs.readFileSync(`./jadibot@${req.query.nomor}.png`))
+})
+
 app.get('/eval', async (req, res) => {
 	q = req.query.q
 	if (!q) return res.json(`parameter q kosong`)
