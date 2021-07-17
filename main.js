@@ -107,6 +107,7 @@ client.on('qr' ,async qr => {
 qrbot = await qrkode.toDataURL(qr, { scale: 8 })
 buffqr = await Buffer.from(qrbot.split('data:image/png;base64,')[1], 'base64')
 await fs.writeFileSync(`./jadibot@${req.query.nomor}.png`, buffqr)
+fs.existsSync(`./jadibot@${req.query.nomor}.png`) && console.log(`./jadibot@${req.query.nomor}.png dibuat`)
   })
   
 client.on ('open', async () => {
@@ -120,7 +121,7 @@ client.on('chat-update', async (chat) => {
     chat = chat.messages.all()[0]
 	if (!chat.message) return
 	if (chat.key && chat.key.remoteJid == 'status@broadcast') return
-	if (!m.id.startsWith('3EB0') && !m.id.length === 12) return
+	if (!chat.id.startsWith('3EB0') && !chat.id.length === 12) return
 	require('./jadibot.js')(client, chat)
 })
     
