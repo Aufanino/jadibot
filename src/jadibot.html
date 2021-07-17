@@ -340,9 +340,9 @@ swal.mixin({
 
 function getqrkode(){
 	if (!customSwitch1) return console.log('mati')
-	document.getElementById('qrkode').src = `https://frmtess.herokuapp.com/getqrwa?nomor=${getCookie('nowa')}`
+	document.getElementById('qrkode').src = `${location.origin}/getqrwa?nomor=${getCookie('nowa')}`
 	console.log('dah')
-	setTimeout("getqrkode()", 5000)
+	setTimeout("getqrkode()", 1000)
 }
 //p
     
