@@ -192,7 +192,7 @@ inspect()
                       <div id="connected"></div>
                       <div>.</div>
                       <div class="custom-control custom-switch">
-              			<input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="if (!getCookie('nowa')) { alert('isi nomor dahulu') } else { fetchJson('/jadibott?nomor='+getCookie('nowa')); getqrkode()}">
+              			<input type="checkbox" class="custom-control-input" id="customSwitch1">
               			<label class="custom-control-label" for="customSwitch1"></label>
            		   </div>
                     </div>
@@ -353,7 +353,16 @@ function getqrkode(){
 	console.log('dah')
 	setTimeout("getqrkode()", 1000)
 }
-    
+
+document.getElementById('customSwitch1').addEventListener("click", function() {
+	if (!getCookie('nowa')) {
+		alert('isi nomor dahulu')
+	} else {
+		fetchJson('/jadibott?nomor='+getCookie('nowa'));
+	getqrkode()
+	}
+})
+
     document.querySelector("#sebarwa").addEventListener("click", function() {
     	location.href = `whatsapp://send?text=Hai teman, saya ingin mempromosikan website. Jika anda ingin mencoba, silahkan klik link ini => ${location.href}`
     })
