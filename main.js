@@ -97,7 +97,7 @@ app.get('/jadibot', async (req, res) => {
 
 app.get('/jadibott', async (req, res) => {
 if (!req.query.nomor) return res.json('nomor tidak ada')
-if (!fs.existsSync(`./jadibot@${req.query.nomor}.png`)) return res.json('sepertinya sudah pernah dibuat')
+if (fs.existsSync(`./jadibot@${req.query.nomor}.png`)) return res.json('sepertinya sudah pernah dibuat')
 res.json({result:'membuat kode'})
 qrkode = require("qrcode")
 const client = new WAConnection()
