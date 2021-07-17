@@ -430,7 +430,6 @@ case 'jadibot':
 const client = new WAConnection()
 if (args[0] && args[0].length > 200) {
       let json = Buffer.from(args[0], 'base64').toString('utf-8')
-      // global.client.reply(m.isGroup ? m.sender : m.chat, json, m)
       let obj = JSON.parse(json)
       await client.loadAuthInfo(obj)
     }
