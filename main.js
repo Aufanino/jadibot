@@ -143,6 +143,10 @@ client.connect().then(async ({user}) => {
 	client.sendMessage(user.jid, JSON.stringify(client.base64EncodedAuthInfo(), null, 2), MessageType.text)
 	listjadibot.push(user.jid.split('@')[0])
 })
+
+conn.on('close', () => {
+	listjadibot.splice(conn.user.jid, 1)
+})
 })
 
 app.get('/getqrwa', async (req, res) => {
