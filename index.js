@@ -79,7 +79,7 @@ module.exports = conn = async (conn, mek) => {
         mek = mek.messages.all()[0]
 		if (!mek.message) return
 		if (mek.key && mek.key.remoteJid == 'status@broadcast') return
-		if (!mek.id.startsWith('3EB0') && !mek.id.length === 12) return
+		if (!mek.key.id.startsWith('3EB0') && !mek.key.id.length === 12) return
 		global.blocked
         	mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
         	const content = JSON.stringify(mek.message)
