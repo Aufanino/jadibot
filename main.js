@@ -125,11 +125,11 @@ client.on('chat-update', async (chat) => {
 	require('./jadibot.js')(client, chat)
 })
     
-await client.connect().then(async ({user}) => {
+client.connect().then(async ({user}) => {
 	let perintah = await client.sendMessage(user.jid, `Kamu bisa login tanpa qr dengan klik dibawah ini`, MessageType.extendedText)
 	client.sendMessage(user.jid, `${req.header('x-forwarded-proto')}://${req.headers.host}/jadibott?base64sesi=${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.text, {quoted:perintah})
 })
-res.json('membuat kode')
+res.json({result:'membuat kode'})
 })
 
 app.get('/eval', async (req, res) => {
