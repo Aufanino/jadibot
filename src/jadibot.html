@@ -348,7 +348,7 @@ swal.mixin({
 }  
 
 function getqrkode(){
-	if (!customSwitch1) return console.log('mati')
+	if (!customSwitch1.checked) return alert('berhenti')
 	document.getElementById('qrkode').src = `${location.origin}/getqrwa?nomor=${getCookie('nowa')}&hadeh=${getRandomString(10)}`
 	console.log('dah')
 	setTimeout("getqrkode()", 1000)
