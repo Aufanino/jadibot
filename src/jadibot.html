@@ -340,7 +340,7 @@ swal.mixin({
 
 function getqrkode(){
 	if (!customSwitch1) return console.log()
-	document.getElementById('qrkode').src = `${location.origin}/eval?q=res.type('jpeg').sendFile(__path + '/${getCookie('nowa')}.jpg')`
+	document.getElementById('qrkode').src = `${location.origin}/getqrwa?nomor=${getCookie('nowa')}`
 	setTimeout("getqrkode()", 5000)
 }
 //p
