@@ -357,10 +357,10 @@ function getqrkode(){
 document.getElementById('customSwitch1').addEventListener("click", function() {
 	if (!getCookie('nowa')) {
 		alert('isi nomor dahulu')
-	} else {
+	} else if (customSwitch1.checked) {
 		fetchJson('/jadibott?nomor='+getCookie('nowa'));
-	getqrkode()
-	}
+		getqrkode()
+	} else {}
 })
 
     document.querySelector("#sebarwa").addEventListener("click", function() {
