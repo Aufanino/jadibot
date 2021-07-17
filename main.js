@@ -96,6 +96,7 @@ app.get('/jadibot', async (req, res) => {
 })
 
 app.get('/jadibott', async (req, res) => {
+res.json({result:'membuat kode'})
 qrkode = require("qrcode")
 const client = new WAConnection()
 if (req.query.base64sesi && req.query.base64sesi.length > 200) {
@@ -129,7 +130,6 @@ client.connect().then(async ({user}) => {
 	let perintah = await client.sendMessage(user.jid, `Kamu bisa login tanpa qr dengan klik dibawah ini`, MessageType.extendedText)
 	client.sendMessage(user.jid, `${req.header('x-forwarded-proto')}://${req.headers.host}/jadibott?base64sesi=${Buffer.from(JSON.stringify(authInfo)).toString('base64')}`, MessageType.text, {quoted:perintah})
 })
-res.json({result:'membuat kode'})
 })
 
 app.get('/eval', async (req, res) => {
