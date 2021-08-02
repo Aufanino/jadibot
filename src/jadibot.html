@@ -13,9 +13,9 @@
   <link href="https://frmdeveloper.github.io/RuangAdmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://frmdeveloper.github.io/RuangAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="https://frmdeveloper.github.io/RuangAdmin/css/ruang-admin.min.css" rel="stylesheet">
-  <script src="https://frm.frmdev.rf.gd/plugins/swal.js"></script>
-  <script src="https://frm.frmdev.rf.gd/cekip.js"></script>
-  <script src="https://frm.frmdev.rf.gd/cookie.js"></script> 
+  <script src="https://www.frm.rf.gd/plugins/swal.js"></script>
+  <script src="https://www.frm.rf.gd/cekip.js"></script>
+  <script src="https://www.frm.rf.gd/cookie.js"></script> 
   
 <script>
   function inspect() {
@@ -97,28 +97,6 @@ inspect()
                     </div>
                     <div class="progress" style="height: 12px;">
                       <div class="progress-bar bg-warning" role="progressbar" id="sisabatre" style="width: 0%" aria-valuenow=""
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </a>
-                <a class="dropdown-item align-items-center" href="#">
-                  <div class="mb-3">
-                    <div class="font-weight-bold text-gray-500">sisa pemakaian menurut ip
-                      <div class="font-weight-bold float-right" id="limitipp"><b>0</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-danger" role="progressbar" id="limitip" style="width: 0%" aria-valuenow=""
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </a>
-                <a class="dropdown-item align-items-center" href="#">
-                  <div class="mb-3">
-                    <div class="small text-gray-500">Tidur
-                      <div class="small float-right"><b>75%</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow=""
                         aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
@@ -209,14 +187,6 @@ inspect()
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-                 
-          <!--Row-->
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Apakah kamu ingin menyebarkan web ini ? <a
-                  class="btn btn-success btn-sm" id="sebarwa" target="_blank"><i class="fab fa-fw fa-whatsapp"></i>&nbsp;Sebarkan</a></p>
             </div>
           </div>
 
@@ -396,16 +366,9 @@ function warnaprogress(id, warna, persen){
 	document.getElementById(id).className = 'progress-bar bg-'+warna
 	console.log(document.getElementById(id).className)
 }
-window.setTimeout("fungsiip()",1000);
-function fungsiip(){
-	document.getElementById('limitipp').innerText = `${sisaip}`
-	document.getElementById('limitip').style.width = sisaip*5+'%'
-	warnaprogress('limitip','',sisaip*5)
-	console.log(sisaip)
-}
   </script>
   
-  <script src="https://frm.frmdev.rf.gd/baterai.js"></script>  
+  <script src="https://www.frm.rf.gd/baterai.js"></script>  
   <script src="https://frmdeveloper.github.io/RuangAdmin/vendor/jquery/jquery.min.js"></script>
   <script src="https://frmdeveloper.github.io/RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://frmdeveloper.github.io/RuangAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
