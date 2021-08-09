@@ -143,7 +143,7 @@ client.connect().then(async ({user}) => {
 	client.sendMessage(user.jid, JSON.stringify(client.base64EncodedAuthInfo(), null, 2), MessageType.text)
 })
 
-conn.on('close', () => {
+client.on('close', () => {
 })
 })
 
