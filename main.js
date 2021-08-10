@@ -40,7 +40,7 @@ nocache('./index.js', module => console.log(`${module} is now updated!`))
 let client = new global.constructor()
 const starts = async (hexa = new WAConnection()) => {
     hexa.logger.level = 'warn'
-    hexa.version = [2,2119,6]
+    hexa.version = [2,2126,14]
     console.log(banner.string)
     hexa.on('qr', () => {
         console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan bang'))
